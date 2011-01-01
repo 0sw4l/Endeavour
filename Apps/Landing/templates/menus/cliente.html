@@ -9,21 +9,27 @@
         <i class="icon-basket"></i>
         <span class="title">Mis Pedidos</span>
     </a>
-     <ul class="sub-menu">
+    <ul class="sub-menu">
         <li>
-            <a href="{% url 'crear_categoria' %}">
+            <a href="{% url 'mis_pedidos' %}">
+                <i class="icon-like"></i>
+                Todos mis pedidos
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'pedidos_pagados' %}">
                 <i class="icon-like"></i>
                 Pedidos pagados
             </a>
         </li>
         <li>
-            <a href="{% url 'crear_producto' %}">
+            <a href="{% url 'pedidos_no_pagados' %}">
                 <i class="icon-dislike"></i>
                 Pedidos sin pagar
             </a>
         </li>
         <li>
-            <a href="{% url 'lista_productos' %}">
+            <a href="{% url 'pedidos_cancelados' %}">
                 <i class="icon-ban"></i>
                 Pedidos cancelados
             </a>

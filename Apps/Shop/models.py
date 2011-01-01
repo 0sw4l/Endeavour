@@ -11,3 +11,8 @@ class Pedido(models.Model):
     cantidad = models.PositiveIntegerField()
     total = models.PositiveIntegerField()
     fecha = models.DateField(auto_now=True)
+    estado = models.BooleanField(default=True)
+    pagado = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        super(Pedido, self).save(*args, **kwargs)

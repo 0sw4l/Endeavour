@@ -49,7 +49,16 @@
                                data-close-others="true">
                                 <img alt="" class="img-circle"/>
 						<span class="username username-hide-on-mobile">
-						    {{ request.user.first_name }} {{ request.user.last_name }}
+						    {{ user.first_name }} {{ user.last_name }}
+                            {% if user.cliente.credito >= 0 %}
+                                {% if user.cliente.credito >= 50000  %}
+                                    <label class="label label-success">$ {{ user.cliente.credito }}</label>
+                                {% elif user.cliente.credito > 0 and user.cliente.credito < 50000 %}
+                                    <label class="label label-warning">$ {{ user.cliente.credito }}</label>
+                                {% elif user.cliente.credito == 0 %}
+                                    <label class="label label-danger">$ {{ user.cliente.credito }}</label>
+                                {% endif %}
+                            {% endif %}
                         </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
@@ -60,9 +69,8 @@
                                 </li>
                                 <li>
                                     <a href="">
-                                        <i class="icon-envelope-open"></i> Mis mensajes <span
-                                            class="badge badge-danger">
-								3 </span>
+                                        <i class="icon-envelope-open"></i>
+                                        Mis mensajes <span class="badge badge-danger">3</span>
                                     </a>
                                 </li>
                                 <li class="divider">

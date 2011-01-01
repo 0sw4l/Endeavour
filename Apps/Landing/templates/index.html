@@ -15,13 +15,14 @@
 				</ul>
 			</div>
 			<div class="row">
+            {% load humanize %}
 				{% for producto in object_list %}
 				<div class="col-md-3">
                         <div class="thumbnail">
                             <img  src="{{ producto.imagen.url }}" width="100px" id="imagen_{{ producto.id }}">
                             <div class="caption">
                                 <h4 class="pull-right">
-                                    $ <span id="precio_{{ producto.id }}">{{ producto.precio }}</span>
+                                    $ <span id="precio_{{ producto.id }}">{{ producto.precio|intcomma  }}</span>
                                 </h4>
                                 <h4>
                                     <a href="#" id="nombre_{{ producto.id }}">
@@ -39,9 +40,11 @@
                                 </p>
                                 <br>
                                 <div align="center">
+                                    {% if request.user.is_anonymous or request.user.cliente %}
                                     <a href="{% url 'comprar' producto.id %}" class="btn btn-success">
                                        Comprar <i class="fa fa-shopping-cart"></i>
                                     </a>
+                                    {% endif %}
                                     <a class="btn blue btn-outline sbold" onclick="DetalleProducto({{ producto.id }})" data-toggle="modal" href="#draggable">
                                       Ver  <i class="fa fa-eye"></i>
                                     </a>

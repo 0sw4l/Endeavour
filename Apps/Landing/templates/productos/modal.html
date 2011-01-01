@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class="modal fade draggable-modal ui-draggable" id="draggable" tabindex="-1" role="basic" aria-hidden="true"
      style="display: none;">
     <div class="modal-dialog">
@@ -29,7 +30,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn red btn-outline" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn green">Comprar </button>
+                <a id="url_buy" class="btn green">Comprar </a>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -40,18 +41,22 @@
 
 <script>
     function DetalleProducto(id){
-        var nombre = $("#nombre_"+id).text()
-        var imagen = $("#imagen_"+id).attr('src')
-        var precio = $("#precio_"+id).text()
-        var cantidad = $("#cantidad_"+id).text()
-        var descripcion = $("#detalle_"+id).text()
+        var nombre = $("#nombre_"+id).text();
+        var imagen = $("#imagen_"+id).attr('src');
+        var precio = $("#precio_"+id).text();
+        var cantidad = $("#cantidad_"+id).text();
+        var descripcion = $("#detalle_"+id).text();
+
+        host = window.location.hostname;
+        route = "http://"+host+":8000/shop/buy/"+id+"/";
 
         $("#nombre").text(nombre);
-        $("#titulo_modal").text(nombre)
-        $("#imagen_producto").attr('src', imagen)
-        $("#precio").text(precio)
-        $("#cantidad").text(cantidad)
-        $("#descripcion").text(descripcion)
+        $("#titulo_modal").text(nombre);
+        $("#imagen_producto").attr('src', imagen);
+        $("#precio").text(precio);
+        $("#cantidad").text(cantidad);
+        $("#descripcion").text(descripcion);
+        $("#url_buy").attr('href', route);
 
     }
 </script>

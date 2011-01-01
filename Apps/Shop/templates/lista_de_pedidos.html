@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+{% block title %}
+    :: Lista de Productos ::
+{% endblock %}
+{% block main %}
+    <h3 class="page-title">
+        Lista de productos
+    </h3>
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a>Inicio</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">Administracion</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">Listas</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                <a href="#">Lista de Productos</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2 class="text-center">Lista de Productos {{ titulo }}</h2>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped table-responsive table-striped">
+                        <thead>
+                        <tr>
+                            <th class="text-center">codigo</th>
+                            <th class="text-center">producto</th>
+                            <th class="text-center">cantidad</th>
+                            <th class="text-center">total</th>
+                            <th class="text-center">fecha de compra</th>
+                            <th class="text-center">estado del pedido</th>
+                            <th class="text-center">acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for pedido in pedidos %}
+                            <tr>
+                                <td class="text-center">{{ pedido.id }}</td>
+                                <td class="text-center">{{ pedido.producto.nombre }}</td>
+                                <td class="text-center">{{ pedido.cantidad }}</td>
+                                <td class="text-center">{{ pedido.total }}</td>
+                                <td class="text-center">{{ pedido.fecha }}</td>
+                                <td class="text-center">
+                                    {% if pedido.estado %}
+                                        <i class="fa fa-check" style="color: greenyellow"></i>
+                                    {% else %}
+                                        <i class="fa fa-close" style="color: red"></i>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% if not pedido.pagado and pedido.estado %}
+                                        <a href="{% url 'cancelar_pedido' pedido.id %}" class="btn btn-success">
+                                            Pagar <i class="fa fa-dollar"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if pedido.estado %}
+                                        <a href="{% url 'cancelar_pedido' pedido.id %}" class="btn btn-danger">
+                                            Cancelar pedido <i class="fa fa-close"></i>
+                                        </a>
+                                    {% endif %}
+                                    <a href="{% url 'detalle_pedido' pedido.id %}" class="btn btn-info">
+                                        Detalles <i class="fa fa-eye-o"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% include 'pagination.html' %}
+    </div>
+{% endblock %}
+

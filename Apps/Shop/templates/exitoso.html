@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{% block main %}
+    {% load humanize %}
+    <div class="row">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-6">
+                <div class="alert alert-info alert-dismissible text-center" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    Detalle del producto
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <img src="{{ pedido.producto.imagen.url }}" width="125%" id="imagen_producto">
+            </div>
+        </div>
+        <div class="col-md-8 text-center" style="padding-left: 10%">
+            <div class="thumbnail">
+                <h2>{{ pedido.producto.nombre }}</h2>
+
+                <h3>
+                    Costo de la compra : $<strong>{{ pedido.total|intcomma }}</strong>
+                    <br>
+                    Cantidades vendidas : <strong>{{ pedido.cantidad }}</strong>
+                    <br>
+                    Valor por Unidad : $<strong>{{ pedido.producto.precio|intcomma }}</strong>
+                    <br>
+                    Descripcion del articulo : <strong>{{ pedido.producto.descripcion }}</strong>
+                </h3>
+            </div>
+            <a href="{% url 'inicio' %}" class="btn btn-info">
+                Seguir Comprando <i class="fa fa-home"></i>
+            </a>
+            <a href="{% url 'mis_pedidos' %}" class="btn btn-warning">
+                Ver mis pedidos realizados <i class="fa fa-dollar"></i>
+            </a>
+            <a href="{% url 'cancelar_pedido' pedido.id %}" class="btn btn-danger">
+                Cancelar Este pedido <i class="fa fa-close"></i>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

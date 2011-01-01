@@ -7,9 +7,10 @@ class Trabajador(User):
     pass
 
 
-class Cliente(User, models.Model):
+class Cliente(User):
 
     token = models.CharField(max_length=40, blank=True)
+    credito = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.user.username
