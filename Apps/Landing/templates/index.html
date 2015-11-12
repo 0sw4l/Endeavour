@@ -1,0 +1,47 @@
+{% extends 'main.html' %}
+{% block title %}
+    :: Inicio ::
+{% endblock %}
+{% block main %}
+            <h3 class="page-title">
+			    Bienvenidos a <strong>Endeavour</strong>
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a>Inicio</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				{% for producto in object_list %}
+				<div class="col-md-3">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">$ {{ producto.precio }}</h4>
+                                <h4><a href="#">{{ producto.nombre }}</a>
+                                </h4>
+                                <p>
+                                    {{ producto.descripcion }}
+                                </p>
+                            </div>
+                            <div class="ratings">
+                                <br>
+                                <div align="center">
+                                    <a type="submit" class="btn btn-warning">
+                                        comprar <i class="fa fa-shopping-cart"></i>
+                                    </a>
+                                    <button type="submit"  class="btn btn-primary">
+                                        ver <i class="fa fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				{% endfor %}
+			</div>
+            {% include 'pagination.html' %}
+{% endblock %}
+

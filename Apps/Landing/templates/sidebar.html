@@ -1,0 +1,95 @@
+<div class="page-sidebar navbar-collapse collapse">
+    <ul class="page-sidebar-menu page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true"
+        data-slide-speed="200">
+
+        {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-cogs"></i>
+                        <span class="title">Administracion</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{% url 'crear_categoria' %}">
+                                <i class="icon-tag"></i>
+                                Crear Categoria
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'crear_producto' %}">
+                                <i class="icon-tag"></i>
+                                Crear Producto
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'lista_productos' %}">
+                                <i class="icon-basket"></i>
+                                Lista de Productos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if user.es_trabajador %}
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-cogs"></i>
+                        <span class="title">Pedidos</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{% url 'crear_categoria' %}">
+                                <i class="icon-tag"></i>
+                                Pedidos pagados
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'crear_producto' %}">
+                                <i class="icon-tag"></i>
+                                Pedidos sin pagar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'lista_productos' %}">
+                                <i class="icon-basket"></i>
+                                Pedidos cancelados
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
+            {% if user.cliente  %}
+                <li class="start ">
+                <a href="{% url 'entrar' %}">
+                    <i class="icon-basket"></i>
+                    <span class="title">Mis Pedidos</span>
+                </a>
+            </li>
+            <li class="start ">
+                <a href="{% url 'registro' %}">
+                    <i class="icon-user"></i>
+                    <span class="title">Perfil</span>
+                </a>
+            </li>
+            {% endif %}
+        {% else %}
+            <li class="start ">
+                <a href="{% url 'entrar' %}">
+                    <i class="icon-user"></i>
+                    <span class="title">Conectate</span>
+                </a>
+            </li>
+            <li class="start ">
+                <a href="{% url 'registro' %}">
+                    <i class="icon-heart"></i>
+                    <span class="title">Registrate</span>
+                </a>
+            </li>
+        {% endif %}
+
+    </ul>
+    <!-- END SIDEBAR MENU -->
+</div>

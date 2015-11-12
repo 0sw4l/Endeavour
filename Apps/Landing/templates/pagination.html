@@ -1,0 +1,30 @@
+{% if is_paginated %}
+<div class="col-md-12"  align="center">
+    <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li>
+                    <a href="?page={{ page_obj.previous_page_number }}"
+                       aria-label="Previous"
+                       data-toggle="tooltip" data-placement="top"
+                       title="Atras">
+                        <i class="fa fa-arrow-circle-left"></i> 
+                    </a>
+                </li>
+            {% endif %}
+            <li>
+                <a aria-disabled="true">
+                    pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </a>
+            </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}"
+                       data-toggle="tooltip" data-placement="top"
+                        title="Siguiente"><i class="fa fa-arrow-circle-right"></i></a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
