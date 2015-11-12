@@ -1,0 +1,60 @@
+{% load widget_tweaks %}
+<form method="post">{% csrf_token %}
+    {% for field in form %}
+        <div class="form-group  {% if field.errors %}has-error{% endif %}" align="center">
+            <label class="control-label" for="{{ field.id_for_label }}">
+                <strong>
+                    <span style="color: #7A7676">
+                         {{ field.label }}
+                        {% if field.errors %}
+                            : <strong style="display: inline-block">{{ field.errors }}</strong>
+                        {% endif %}
+                    </span>
+                </strong>
+            </label>
+
+            <div class="controls">
+                {% render_field field class="form-control has-error" %}
+            </div>
+        </div>
+    {% endfor %}
+    <br>
+
+    <div align="center">
+        <a type="submit" id="lock" href="javascript: history.go(-1)" data-loading-text="Cancelando..."
+           class="btn btn-danger">
+            Cancelar <i class="fa fa-close"></i>
+        </a>
+        <button type="submit" id="lock_" data-loading-text="Guardando..." class="btn btn-primary">
+            Guardar <i class="fa fa-save"></i>
+        </button>
+    </div>
+</form>
+
+{% block script %}
+<script>
+
+    $("#lock").click(function() {
+        var $btn = $(this);
+        $btn.button('loading');
+        $btn.css('background-color', '#B8B8B8');
+        $btn.css('border-color', '#B8B8B8');
+        setTimeout(function () {
+            $btn.button('reset');
+        }, 500);
+    });
+
+    $("#lock_").click(function() {
+        var $btn = $(this);
+        $btn.button('loading');
+        $btn.css('background-color', '#B8B8B8');
+        $btn.css('border-color', '#B8B8B8');
+        setTimeout(function () {
+            $btn.button('reset');
+        }, 500);
+    });
+</script>
+{% endblock %}
+
+
+

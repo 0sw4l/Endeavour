@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% block title %}
+    :: Crear Categoria ::
+{% endblock %}
+{% block main %}
+            <h3 class="page-title">
+			    Crear Categoria
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="index.html">Inicio</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">Administracion</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">Crear objeto</a>
+                        <i class="fa fa-angle-right"></i>
+					</li>
+                    <li>
+						<a href="#">Crear Categoria</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2 class="text-center">Crear Categoria</h2>
+                        </div>
+                        <div class="panel-body">
+                             {% include 'form.html' %}
+                        </div>
+                    </div>
+				</div>
+			</div>
+{% endblock %}
+

@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% block title %}
+    :: Crear Categoria ::
+{% endblock %}
+{% block main %}
+             <h3 class="page-title">
+			    Crear Categoria
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="index.html">Inicio</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">Administracion</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">Listas</a>
+                        <i class="fa fa-angle-right"></i>
+					</li>
+                    <li>
+						<a href="#">Lista de Productos</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2 class="text-center">Lista de Productos</h2>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">id</th>
+                                        <th class="text-center">nombre</th>
+                                        <th class="text-center">acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for categoria in object_list %}
+                                        <tr>
+                                            <td class="text-center">{{ categoria.id }}</td>
+                                            <td class="text-center">{{ categoria.nombre }}</td>
+                                            <td class="text-center">
+                                                <a href="{% url 'editar_categoria' categoria.id %}" class="btn btn-info">
+                                                    modificar <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger">
+                                                    eliminar <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+				</div>
+                        {% include 'pagination.html' %}
+			</div>
+{% endblock %}
+
