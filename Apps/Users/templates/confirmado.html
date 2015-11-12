@@ -1,0 +1,23 @@
+{% extends 'user_main.html' %}
+{% block main %}
+    <div class="panel panel-success">
+        <div class="panel-heading" style="background: #4bed33; border-color: #4bed33;">
+            <h3 class="text-center">
+                <strong style="color: white">
+                    Usuario Confirmado
+                    <i class="fa fa-heart" style="font-size: 1em;"></i>
+                </strong>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <h3 class="text-center">
+                <strong>{{ usuario.first_name }}</strong>, Bienvenido a <strong>Endeavour!</strong>
+            </h3>
+        </div>
+        <div class="panel-footer" align="center">
+        <a href="{% url 'entrar' %}" class="btn btn-warning btn-lg">
+            Iniciar Sesion <i class="fa fa-sign-in"></i>
+        </a>
+    </div>
+    </div>
+{% endblock main %}

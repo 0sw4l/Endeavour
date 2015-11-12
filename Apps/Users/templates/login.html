@@ -1,0 +1,61 @@
+{% extends 'user_main.html' %}
+{% block main %}
+
+    <div class="form-title center-block">
+        <span class="form-title">Bienvenido a <strong>Endeavour</strong>.</span>
+        <br>
+        {% if form.email.errors %}
+            <div class="alert alert-danger">
+                <button class="close" data-close="alert"></button>
+                {{ form.email.errors }}
+            </div>
+        {% endif %}
+
+        {% load widget_tweaks %}
+        <div class="form-group">
+            {% render_field form.email class+="form-control form-control-solid placeholder-no-fix" id="username" autocomplete="off" placeholder="Correo" required="" %}
+        </div>
+
+        <div class="form-group">
+            {% render_field form.password id="password" class+="form-control form-control-solid placeholder-no-fix" placeholder="Password" required="" %}
+        </div>
+
+        <div class="form-actions">
+            <button class="btn btn-primary btn-block uppercase" style="color:white">
+                <i class="fa fa-sign-in" style="color: white"></i> Login
+            </button>
+        </div>
+
+        <div class="row" align="center">
+            <div class="col-md-6 echa-pa-abajo">
+                <a href="{% url 'inicio' %}" class="btn btn-warning" style="color:white">
+                    <i class="fa fa-arrow-left" style="color: white"></i> Regresar al inicio
+                </a>
+            </div>
+            <div class="col-md-6 echa-pa-abajo">
+                <a href="{% url 'registro' %}"  class="btn btn-success" style="color:white">
+                    Crear una cuenta <i class="fa fa-user"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="login-options ocultar-dispositivo">
+        <h4 class="pull-left">
+            <strong style="color:white">Registro o Login Social</strong>
+        </h4>
+        <ul class="social-icons pull-right">
+            <li>
+                <a class="social-icon-color facebook" data-original-title="facebook" href="javascript:;"></a>
+            </li>
+            <li>
+                <a class="social-icon-color twitter" data-original-title="Twitter" href="javascript:;"></a>
+            </li>
+            <li>
+                <a class="social-icon-color googleplus" data-original-title="Goole Plus" href="javascript:;"></a>
+            </li>
+        </ul>
+    </div>
+
+{% endblock main %}

@@ -1,0 +1,18 @@
+{% extends 'user_main.html' %}
+{% block main %}
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h2 class="text-center">
+            <strong>Upss... </strong> <i class="fa fa-ban fa-spin" style="font-size: 1em"></i>
+        </h2>
+    </div>
+    <div class="panel-body">
+        <h3 class="text-center">Lo sentimos pero esta clave de activacion no esta asociada a ninguna cuenta</h3>
+    </div>
+    <div class="panel-footer" align="center">
+        <a href="{% url 'inicio' %}" class="btn btn-danger btn-lg">
+            Ok, salir de aqui
+        </a>
+    </div>
+</div>
+{% endblock %}

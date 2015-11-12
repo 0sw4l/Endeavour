@@ -1,0 +1,60 @@
+{% extends 'user_main.html' %}
+{% block main %}
+
+    <div class="form-title center-block">
+        <span class="form-title">Bienvenido a <strong>Endeavour</strong>.</span>
+
+        <h2>Crea tu cuenta</h2>
+
+        {% load widget_tweaks %}
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {% render_field form.first_name class+="form-control form-control-solid placeholder-no-fix" autocomplete="off" placeholder="Nombre" required="" %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {% render_field form.last_name class+="form-control form-control-solid placeholder-no-fix" autocomplete="off" placeholder="Apelido" required="" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    {% render_field form.email class+="form-control form-control-solid placeholder-no-fix" autocomplete="off" placeholder="Correo" required="" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    {% render_field form.password1 class+="form-control form-control-solid placeholder-no-fix" autocomplete="off" placeholder="Contraseña" required="" %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    {% render_field form.password2 class+="form-control form-control-solid placeholder-no-fix" autocomplete="off" placeholder="Contraseña de nuevo" required="" %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" align="center">
+            <div class="col-md-6 echa-pa-abajo">
+                <a href="{% url 'inicio' %}"  class="btn btn-warning" style="color:white">
+                    <i class="fa fa-arrow-left" style="color: white"></i> Regresar al inicio
+                </a>
+            </div>
+            <div class="col-md-6 echa-pa-abajo">
+                <button class="btn btn-success">
+                   Completar Registro <i class="fa fa-check"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+{% endblock main %}
