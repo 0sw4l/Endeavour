@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="modal fade draggable-modal ui-draggable" id="draggable" tabindex="-1" role="basic" aria-hidden="true"
+     style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header ui-draggable-handle">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h2 class="modal-title">
+                    Detalles de  <strong><span id="titulo_modal"></span></strong>
+                </h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img width="125%" id="imagen_producto">
+                    </div>
+                    <div class="col-md-8" style="padding-left: 10%">
+                        <h3><span id="nombre"></span></h3>
+                        <h4>
+                            precio : $<strong><span id="precio"></span></strong>
+                            <br>
+                            Candiades disponibles : <strong><span id="cantidad"></span></strong>
+                            <br>
+                        </h4>
+                        <h4>
+                            Descripcion : <strong><p id="descripcion"></p></strong>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn red btn-outline" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn green">Comprar </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
-</body>
-</html>
+
+<script>
+    function DetalleProducto(id){
+        var nombre = $("#nombre_"+id).text()
+        var imagen = $("#imagen_"+id).attr('src')
+        var precio = $("#precio_"+id).text()
+        var cantidad = $("#cantidad_"+id).text()
+        var descripcion = $("#detalle_"+id).text()
+
+        $("#nombre").text(nombre);
+        $("#titulo_modal").text(nombre)
+        $("#imagen_producto").attr('src', imagen)
+        $("#precio").text(precio)
+        $("#cantidad").text(cantidad)
+        $("#descripcion").text(descripcion)
+
+    }
+</script>
