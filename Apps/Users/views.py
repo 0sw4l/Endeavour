@@ -1,4 +1,5 @@
-import hashlib, random
+import hashlib
+import random
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, logout
 # Create your views here.
@@ -13,8 +14,12 @@ def signin(request):
     else:
         form = EmailAuthenticationForm(request.POST or None)
         if form.is_valid():
-            auth_login(request, form.get_user())
-            return redirect('inicio')
+            user = form.get_user()
+            auth_login(request, user)
+            if form.get_admin():
+                return redirect('lista_productos')
+            else:
+                return redirect('inicio')
     return render(request, 'login.html', {'form': form})
 
 
