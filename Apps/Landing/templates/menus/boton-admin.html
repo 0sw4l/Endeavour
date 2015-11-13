@@ -1,10 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="page-actions">
+			<div class="btn-group hide">
+				<button type="button" class="btn btn-circle red-pink dropdown-toggle" data-toggle="dropdown">
+				<i class="icon-bar-chart"></i>&nbsp;<span class="hidden-sm hidden-xs">New&nbsp;</span>&nbsp;<i class="fa fa-angle-down"></i>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li>
+						<a href="javascript:;">
+						<i class="icon-user"></i> New User </a>
+					</li>
+					<li>
+						<a href="javascript:;">
+						<i class="icon-present"></i> New Event <span class="badge badge-success">4</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+						<i class="icon-basket"></i> New order </a>
+					</li>
+					<li class="divider">
+					</li>
+					<li>
+						<a href="javascript:;">
+						<i class="icon-flag"></i> Pending Orders <span class="badge badge-danger">4</span>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+						<i class="icon-users"></i> Pending Users <span class="badge badge-warning">12</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="btn-group">
+				<button type="button" class="btn btn-circle green-haze dropdown-toggle" data-toggle="dropdown">
+				<i class="fa fa-plus"></i>&nbsp;<span class="hidden-sm hidden-xs">Crear&nbsp;</span>&nbsp;<i class="fa fa-angle-down"></i>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li>
+						<a href="{% url 'crear_categoria' %}">
+						<i class="icon-docs"></i> Nueva Categoria </a>
+					</li>
+                    <li>
+						<a href="{% url 'crear_tipo_producto' %}">
+						<i class="icon-docs"></i> Nuevo tipo</a>
+					</li>
+					<li>
+						<a href="{% url 'crear_producto' %}">
+						<i class="icon-tag"></i> Nuevo Producto </a>
+					</li>
+                    <li>
+						<a href="javascript:;">
+						<i class="icon-user"></i> Nuevo Usuario</a>
+					</li>
+					<li class="divider">
+					</li>
+					<li>
+						<a href="{% url 'lista_categorias' %}">
+						<i class="fa fa-flag"></i> Categorias
+                           {% if categorias %}
+                                 <span class="badge badge-danger">{{ categorias }}</span>
+                           {% endif %}
+						</a>
+					</li>
+                    <li>
+						<a href="{% url 'lista_productos' %}">
+						<i class="fa fa-cubes"></i> Productos
+                           {% if productos %}
+                                <span class="badge badge-success">{{ productos }}</span>
+                           {% endif %}
+						</a>
+					</li>
+                    <li>
+						<a href="{% url 'lista_tipos' %}">
+						<i class="fa fa-umbrella"></i> Tipos
+                           {% if productos %}
+                                <span class="badge badge-success">{{ productos }}</span>
+                           {% endif %}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
