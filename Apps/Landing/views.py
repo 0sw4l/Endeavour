@@ -1,5 +1,4 @@
 from django.contrib.auth import authenticate, login as auth_login, logout
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from Apps.Inventory.models import Producto, Categoria
@@ -36,10 +35,4 @@ def log_in(request):
         else:
             context = {'msj': 'Usuario o Password incorrecta', 'error': True}
     return render(request, 'login.html', context)
-
-
-@login_required
-def log_out(request):
-    logout(request)
-    return redirect('inicio')
 
