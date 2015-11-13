@@ -18,7 +18,7 @@
 				{% for producto in object_list %}
 				<div class="col-md-3">
                         <div class="thumbnail">
-                            <img  src="http://cdn.clickplus.pt/product_images/CLP465GP_Piano-Cauda-Digital-YAMAHA-Clavinova-CLP465GP_1.jpeg"
+                            <img  src="{{ producto.imagen.url }}"
                                   alt="" width="70%"
                                   id="imagen_{{ producto.id }}">
                             <div class="caption">
