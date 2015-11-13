@@ -1,10 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'main.html' %}
+{% block title %}
+    :: Lista tipos ::
+{% endblock %}
+{% block main %}
+            <h3 class="page-title">
+			    Lista de tipos
+			</h3>
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li>
+						<i class="fa fa-home"></i>
+						<a href="index.html">Inicio</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">Administracion</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">Listas</a>
+                        <i class="fa fa-angle-right"></i>
+					</li>
+                    <li>
+						<a href="#">Lista de tipos de producto</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2 class="text-center">Lista de tipos de producto</h2>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered table-striped table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">id</th>
+                                        <th class="text-center">nombre</th>
+                                        <th class="text-center">acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for tipo in object_list %}
+                                        <tr>
+                                            <td class="text-center">{{ tipo.id }}</td>
+                                            <td class="text-center">{{ tipo.nombre }}</td>
+                                            <td class="text-center">
+                                                <a href="{% url 'editar_tipo' tipo.id %}" class="btn btn-info">
+                                                    modificar <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="" class="btn btn-danger">
+                                                    eliminar <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+				</div>
+                        {% include 'pagination.html' %}
+			</div>
+{% endblock %}
 
-</body>
-</html>
