@@ -1,23 +1,23 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from forms import CategoriaForm, ProductoForm
-from  .models import Categoria, Producto
+from forms import CategoriaForm, ProductoForm, TipoForm
+from  .models import Categoria, Producto, TipoProducto
 # Create your views here.
 
 
 @login_required
-def crear_producto(request):
-    form = ProductoForm()
+def crear_tipo_producto(request):
+    form = TipoForm()
     if request.POST:
-        form = ProductoForm(request.POST)
+        form = TipoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('lista_productos')
+            return redirect('lista_tipos')
     context = {
         'form': form
     }
-    return render(request, 'producto_form.html', context)
+    return render(request, 'tipo_producto_form.html', context)
 
 
 @login_required
@@ -32,12 +32,31 @@ def crear_categoria(request):
 
 
 @login_required
-def lista_productos(request):
-    productos = Producto.objects.all()
+def crear_producto(request):
+    form = ProductoForm()
+    if request.POST:
+        form = ProductoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_productos')
     context = {
-        'productos': productos
+        'form': form
     }
-    return render(request, 'list_productos.html', context)
+    return render(request, 'producto_form.html', context)
+
+
+class TiposProductoView(ListView):
+
+    template_name = 'list_tipos.html'
+    model = TipoProducto
+    paginate_by = 10
+
+
+class CategoriasView(ListView):
+
+    template_name = 'list_categorias.html'
+    model = Categoria
+    paginate_by = 10
 
 
 class ProductosView(ListView):
@@ -47,11 +66,36 @@ class ProductosView(ListView):
     paginate_by = 10
 
 
-class CategoriasView(ListView):
+@login_required
+def editar_tipo_producto(request, **kwargs):
 
-    template_name = 'list_categorias.html'
-    model = Categoria
-    paginate_by = 10
+    id = kwargs.get('pk')
+    tipo = TipoProducto.objects.get(id=id)
+    form = TipoForm(instance=tipo)
+    if request.POST:
+        form = TipoForm(request.POST, instance=tipo)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_productos')
+    context = {
+         'form': form
+    }
+    return render(request, 'tipo_producto_form.html', context)
+
+
+@login_required
+def editar_categoria(request, **kwargs):
+    category = Categoria.objects.get(id=kwargs.get('pk'))
+    form = CategoriaForm(instance=category)
+    if request.POST:
+        form = CategoriaForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_categorias')
+    context = {
+         'form': form
+    }
+    return render(request, 'categoria_form.html', context)
 
 
 @login_required
@@ -69,18 +113,3 @@ def editar_producto(request, **kwargs):
          'form': form
     }
     return render(request, 'producto_form.html', context)
-
-
-@login_required
-def editar_categoria(request, **kwargs):
-    category = Categoria.objects.get(id=kwargs.get('pk'))
-    form = CategoriaForm(instance=category)
-    if request.POST:
-        form = CategoriaForm(request.POST, instance=category)
-        if form.is_valid():
-            form.save()
-            return redirect('lista_categorias')
-    context = {
-         'form': form
-    }
-    return render(request, 'categoria_form.html', context)
