@@ -4,191 +4,121 @@
     <meta charset="utf-8"/>
     <title>{% block title %}{% endblock %}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     {% include 'css.html' %}
 </head>
 {% load staticfiles %}
 <body class="page-md page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo page-header-fixed-mobile">
 <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
-	<div class="page-header-inner">
-		<div class="page-logo">
-			<a href="index.html">
+    <div class="page-header-inner">
+        <div class="page-logo">
+            <a href="index.html">
 
-			</a>
-			<div class="menu-toggler sidebar-toggler">
-			</div>
-		</div>
-		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-		</a>
-         {% if user.is_authenticated and user.is_superuser %}
-		<div class="page-actions">
-			<div class="btn-group hide">
-				<button type="button" class="btn btn-circle red-pink dropdown-toggle" data-toggle="dropdown">
-				<i class="icon-bar-chart"></i>&nbsp;<span class="hidden-sm hidden-xs">New&nbsp;</span>&nbsp;<i class="fa fa-angle-down"></i>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li>
-						<a href="javascript:;">
-						<i class="icon-user"></i> New User </a>
-					</li>
-					<li>
-						<a href="javascript:;">
-						<i class="icon-present"></i> New Event <span class="badge badge-success">4</span>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-						<i class="icon-basket"></i> New order </a>
-					</li>
-					<li class="divider">
-					</li>
-					<li>
-						<a href="javascript:;">
-						<i class="icon-flag"></i> Pending Orders <span class="badge badge-danger">4</span>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:;">
-						<i class="icon-users"></i> Pending Users <span class="badge badge-warning">12</span>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div class="btn-group">
-				<button type="button" class="btn btn-circle green-haze dropdown-toggle" data-toggle="dropdown">
-				<i class="fa fa-plus"></i>&nbsp;<span class="hidden-sm hidden-xs">Crear&nbsp;</span>&nbsp;<i class="fa fa-angle-down"></i>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li>
-						<a href="{% url 'crear_categoria' %}">
-						<i class="icon-docs"></i> Nueva Categoria </a>
-					</li>
-					<li>
-						<a href="{% url 'crear_producto' %}">
-						<i class="icon-tag"></i> Nuevo Producto </a>
-					</li>
-                    <li>
-						<a href="javascript:;">
-						<i class="icon-user"></i> Nuevo Usuario</a>
-					</li>
-					<li class="divider">
-					</li>
-					<li>
-						<a href="{% url 'lista_productos' %}">
-						<i class="fa fa-cubes"></i> Productos
-                           {% if productos %}
-                                <span class="badge badge-success">{{ productos }}</span>
-                           {% endif %}
-						</a>
-					</li>
-					<li>
-						<a href="{% url 'lista_categorias' %}">
-						<i class="fa fa-flag"></i> Categorias
-                           {% if categorias %}
-                                 <span class="badge badge-danger">{{ categorias }}</span>
-                           {% endif %}
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+            </a>
+
+            <div class="menu-toggler sidebar-toggler">
+            </div>
+        </div>
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse">
+        </a>
+        {% if user.is_authenticated and user.is_superuser %}
+            {% include 'menus/boton-admin.html' %}
         {% endif %}
-		<!-- END PAGE ACTIONS -->
-		<!-- BEGIN PAGE TOP -->
-		<div class="page-top">
-			<!-- BEGIN HEADER SEARCH BOX -->
-			<!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-			<form class="search-form search-form-expanded" method="GET">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Buscar..." name="query">
+        <!-- END PAGE ACTIONS -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN HEADER SEARCH BOX -->
+            <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+            <form class="search-form search-form-expanded" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar..." name="query">
 					<span class="input-group-btn">
 					<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
 					</span>
-				</div>
-			</form>
-			<!-- END HEADER SEARCH BOX -->
-			<!-- BEGIN TOP NAVIGATION MENU -->
-			<div class="top-menu">
+                </div>
+            </form>
+            <!-- END HEADER SEARCH BOX -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
 
-                    <ul class="nav navbar-nav pull-right">
+                <ul class="nav navbar-nav pull-right">
                     <li class="dropdown dropdown-user">
                         {% if user.is_authenticated %}
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-						<img alt="" class="img-circle" />
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                               data-close-others="true">
+                                <img alt="" class="img-circle"/>
 						<span class="username username-hide-on-mobile">
 						    {{ request.user.first_name }} {{ request.user.last_name }}
                         </span>
-						<i class="fa fa-angle-down"></i>
-						</a>
-						<ul class="dropdown-menu dropdown-menu-default">
-							<li>
-								<a href="">
-								<i class="icon-user"></i> Mi Perfil </a>
-							</li>
-							<li>
-								<a href="">
-								<i class="icon-envelope-open"></i> Mis mensajes <span class="badge badge-danger">
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="">
+                                        <i class="icon-user"></i> Mi Perfil </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="icon-envelope-open"></i> Mis mensajes <span
+                                            class="badge badge-danger">
 								3 </span>
-								</a>
-							</li>
-							<li class="divider">
-							</li>
-                            {% if request.user.is_superuser %}
-                                 <li>
-								    <a href="{% url 'admin:index' %}">
-								    <i class="fa fa-database"></i> Administrador </a>
-							    </li>
-                            {% endif %}
-							<li>
-								<a href="{% url 'salir' %}">
-								<i class="icon-key"></i> Cerrar Sesion </a>
-							</li>
-						</ul>
-                         {% else %}
-                             <a href="{% url 'entrar' %}" class="dropdown-toggle">
+                                    </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                {% if request.user.is_superuser %}
+                                    <li>
+                                        <a href="{% url 'admin:index' %}">
+                                            <i class="fa fa-database"></i> Administrador </a>
+                                    </li>
+                                {% endif %}
+                                <li>
+                                    <a href="{% url 'salir' %}">
+                                        <i class="icon-key"></i> Cerrar Sesion </a>
+                                </li>
+                            </ul>
+                        {% else %}
+                            <a href="{% url 'entrar' %}" class="dropdown-toggle">
 						        <span class="username username-hide-on-mobile">
                                     Conectate  <i class="icon-power"></i>
                                 </span>
                             </a>
                         {% endif %}
 
-					</li>
-					<!-- END USER LOGIN DROPDOWN -->
-				</ul>
-
-			</div>
-			<!-- END TOP NAVIGATION MENU -->
-		</div>
-		<!-- END PAGE TOP -->
-	</div>
-	<!-- END HEADER INNER -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- END HEADER -->
+
 <div class="clearfix">
 </div>
-<!-- BEGIN CONTAINER -->
+
 <div class="page-container">
-	<div class="page-sidebar-wrapper">
+    <div class="page-sidebar-wrapper">
         {% include 'sidebar.html' %}
     </div>
-	<div class="page-content-wrapper">
-		<div class="page-content">
-			{% block main %}
+
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            {% block main %}
             {% endblock %}
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
+
 <div class="page-footer">
-	<div class="page-footer-inner">
-		 2015 &copy; 0sw4l - unilibrebaq. <a href="http://www.twitter.com/0sw4lR" style="color: white" title="0sw@l Twitter" target="_blank">0sw4l!</a>
-	</div>
-	<div class="scroll-to-top">
-		<i class="icon-arrow-up"></i>
-	</div>
+    <div class="page-footer-inner">
+        2015 &copy; 0sw4l - unilibrebaq. <a href="http://www.twitter.com/0sw4lR" style="color: white"
+                                            title="0sw@l Twitter" target="_blank">0sw4l!</a>
+    </div>
+
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
 </div>
-
-    {% include 'scripts.html' %}
-
+{% include 'scripts.html' %}
 </body>
-<!-- END BODY -->
 </html>
