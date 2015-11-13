@@ -1,6 +1,6 @@
 __author__ = 'osw4l'
 from django import forms
-from .models import Categoria, Producto
+from .models import Categoria, Producto, TipoProducto
 
 
 class CategoriaForm(forms.ModelForm):
@@ -17,3 +17,9 @@ class ProductoForm(forms.ModelForm):
         fields = '__all__'
         exclude = ('eliminado', )
 
+
+class TipoForm(forms.ModelForm):
+
+    class Meta:
+        model = TipoProducto
+        fields = ('nombre', )
