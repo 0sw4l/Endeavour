@@ -1,5 +1,6 @@
 import hashlib
 import random
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login as auth_login, logout
 # Create your views here.
@@ -21,6 +22,12 @@ def signin(request):
             else:
                 return redirect('inicio')
     return render(request, 'login.html', {'form': form})
+
+
+@login_required
+def log_out(request):
+    logout(request)
+    return redirect('inicio')
 
 
 def register_user(request):
