@@ -105,7 +105,7 @@ def editar_producto(request, **kwargs):
     producto = Producto.objects.get(id=id)
     form = ProductoForm(instance=producto)
     if request.POST:
-        form = ProductoForm(request.POST, instance=producto)
+        form = ProductoForm(request.POST, request.FILES,instance=producto)
         if form.is_valid():
             form.save()
             return redirect('lista_productos')
