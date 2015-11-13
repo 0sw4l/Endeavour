@@ -1,0 +1,27 @@
+<li>
+    <a href="javascript:;">
+        <i class="icon-rocket"></i>
+        <span class="title">Pedidos</span>
+        <span class="arrow "></span>
+    </a>
+    <ul class="sub-menu">
+        <li>
+            <a href="{% url 'crear_categoria' %}">
+                <i class="icon-like"></i>
+                Pedidos pagados
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'crear_producto' %}">
+                <i class="icon-dislike"></i>
+                Pedidos sin pagar
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'lista_productos' %}">
+                <i class="icon-ban"></i>
+                Pedidos cancelados
+            </a>
+        </li>
+    </ul>
+</li>

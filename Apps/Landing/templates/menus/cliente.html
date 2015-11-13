@@ -1,0 +1,32 @@
+<li class="start ">
+    <a href="{% url 'registro' %}">
+        <i class="icon-user"></i>
+        <span class="title">Perfil</span>
+    </a>
+</li>
+<li class="start ">
+    <a href="{% url 'entrar' %}">
+        <i class="icon-basket"></i>
+        <span class="title">Mis Pedidos</span>
+    </a>
+     <ul class="sub-menu">
+        <li>
+            <a href="{% url 'crear_categoria' %}">
+                <i class="icon-like"></i>
+                Pedidos pagados
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'crear_producto' %}">
+                <i class="icon-dislike"></i>
+                Pedidos sin pagar
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'lista_productos' %}">
+                <i class="icon-ban"></i>
+                Pedidos cancelados
+            </a>
+        </li>
+    </ul>
+</li>

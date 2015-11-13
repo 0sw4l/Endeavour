@@ -8,7 +8,7 @@
     {% include 'css.html' %}
 </head>
 {% load staticfiles %}
-<body class="page-md page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo page-header-fixed-mobile page-footer-fixed1">
+<body class="page-md page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo page-header-fixed-mobile">
 <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
 	<div class="page-header-inner">
 		<div class="page-logo">
@@ -20,7 +20,7 @@
 		</div>
 		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
 		</a>
-         {% if user.is_authenticated %}
+         {% if user.is_authenticated and user.is_superuser %}
 		<div class="page-actions">
 			<div class="btn-group hide">
 				<button type="button" class="btn btn-circle red-pink dropdown-toggle" data-toggle="dropdown">
@@ -133,10 +133,12 @@
 							</li>
 							<li class="divider">
 							</li>
-                            <li>
-								<a href="{% url 'admin:index' %}">
-								<i class="fa fa-database"></i> Administrador </a>
-							</li>
+                            {% if request.user.is_superuser %}
+                                 <li>
+								    <a href="{% url 'admin:index' %}">
+								    <i class="fa fa-database"></i> Administrador </a>
+							    </li>
+                            {% endif %}
 							<li>
 								<a href="{% url 'salir' %}">
 								<i class="icon-key"></i> Cerrar Sesion </a>
@@ -145,7 +147,7 @@
                          {% else %}
                              <a href="{% url 'entrar' %}" class="dropdown-toggle">
 						        <span class="username username-hide-on-mobile">
-                                    <i class="fa fa-sign-in"></i> Conectarse
+                                    Conectate  <i class="icon-power"></i>
                                 </span>
                             </a>
                         {% endif %}
