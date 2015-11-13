@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
 
-    url(r'^registro/', views.register_user, name='registro'),
-    url(r'^registro-completado/', views.registro_completado, name='registro_completado'),
-    url(r'^confirmar-registro/(?P<activation_key>\w+)', views.register_confirm)
+    url(r'^register/', views.register_user, name='registro'),
+    url(r'^successfull-register/', views.registro_completado, name='registro_completado'),
+    url(r'^confirm-user/(?P<activation_key>\w+)', views.register_confirm)
 ]

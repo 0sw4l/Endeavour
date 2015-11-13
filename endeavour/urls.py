@@ -19,8 +19,10 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', include('Apps.Landing.urls')),
-    url(r'^inventario/', include('Apps.Inventory.urls')),
-    url(r'^usuarios/', include('Apps.Users.urls')),
+
+    url(r'^inventory/', include('Apps.Inventory.urls')),
+    url(r'^users/', include('Apps.Users.urls')),
+
     url(r'^login/', 'Apps.Users.views.signin', name='entrar'),
-    url(r'^salir/', 'Apps.Landing.views.log_out', name='salir'),
+    url(r'^logout/', 'Apps.Users.views.log_out', name='salir'),
 ]
