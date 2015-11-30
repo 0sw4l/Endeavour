@@ -39,7 +39,7 @@
                                 </p>
                                 <br>
                                 <div align="center">
-                                    <a type="submit" class="btn btn-success">
+                                    <a href="{% url 'comprar' producto.id %}" class="btn btn-success">
                                        Comprar <i class="fa fa-shopping-cart"></i>
                                     </a>
                                     <a class="btn blue btn-outline sbold" onclick="DetalleProducto({{ producto.id }})" data-toggle="modal" href="#draggable">

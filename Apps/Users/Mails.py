@@ -1,7 +1,7 @@
 __author__ = 'osw4l'
 from django.core.mail import EmailMultiAlternatives
 
-url = 'http://localhost:8010/usuarios/confirmar-registro'
+url = 'http://localhost:8010/users/confirm-user'
 mail_admin = 'ioswxd@gmail.com'
 
 

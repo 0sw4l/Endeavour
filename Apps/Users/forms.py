@@ -24,9 +24,6 @@ class EmailAuthenticationForm(forms.Form):
 
         self.user_cache = authenticate(email=email, password=password)
 
-        if self.user_cache.is_superuser:
-            self.administrador = True
-
         if self.user_cache is None:
             self._errors["email"] = self.error_class(['Usuario o Password incorrecta'])
         elif not self.user_cache.is_active:
@@ -37,8 +34,8 @@ class EmailAuthenticationForm(forms.Form):
     def get_user(self):
         return self.user_cache
 
-    def get_admin(self):
-        return self.administrador
+    def is_admin(self):
+        return self.user_cache.is_superuser
 
 
 class ClienteForm(UserCreationForm):

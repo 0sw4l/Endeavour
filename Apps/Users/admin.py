@@ -5,4 +5,5 @@ from .models import Cliente
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ['username', 'email', 'activation_key', 'is_active']
+    list_display = ['username', 'email', 'token', 'is_active']
+

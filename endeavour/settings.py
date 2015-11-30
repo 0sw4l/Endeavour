@@ -98,9 +98,9 @@ EMAIL_USE_TLS = True
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 
-from db_info import local
+from . import db_info
 
-DATABASES = local
+DATABASES = db_info.heroku
 
 
 # Internationalization

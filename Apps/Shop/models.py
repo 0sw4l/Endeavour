@@ -7,11 +7,7 @@ from Apps.Inventory.models import Producto
 class Pedido(models.Model):
 
     cliente = models.ForeignKey(Cliente)
-    fecha = models.DateField(auto_now=True)
-
-
-class PedidoDetalle(models.Model):
-
     producto = models.ForeignKey(Producto)
     cantidad = models.PositiveIntegerField()
-
+    total = models.PositiveIntegerField()
+    fecha = models.DateField(auto_now=True)

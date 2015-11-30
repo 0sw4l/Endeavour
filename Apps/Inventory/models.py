@@ -1,5 +1,5 @@
 from django.db import models
-
+from Apps.Users.models import Cliente
 # Create your models here.
 
 
@@ -25,11 +25,18 @@ class Producto(models.Model):
     categoria = models.ForeignKey(Categoria)
     tipo = models.ForeignKey(TipoProducto)
     cantidad = models.PositiveIntegerField()
-    precio = models.FloatField()
+    precio = models.PositiveIntegerField()
     descripcion = models.TextField()
     imagen = models.ImageField(upload_to="endeavour")
     usado = models.BooleanField(default=False)
     eliminado = models.BooleanField(default=False, editable=False)
+    voto_positivo = models.IntegerField(default=0, editable=False)
+    voto_negativo = models.IntegerField(default=0, editable=False)
 
 
+class ComentarioProducto(models.Model):
+
+    producto = models.ForeignKey(Producto)
+    cliente = models.ForeignKey(Cliente)
+    comentario = models.TextField()
 

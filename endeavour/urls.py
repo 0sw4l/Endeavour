@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^$', include('Apps.Landing.urls')),
 
     url(r'^inventory/', include('Apps.Inventory.urls')),
+    url(r'^shop/', include('Apps.Shop.urls')),
     url(r'^users/', include('Apps.Users.urls')),
 
     url(r'^login/', 'Apps.Users.views.signin', name='entrar'),

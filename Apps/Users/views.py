@@ -17,7 +17,7 @@ def signin(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
-            if form.get_admin():
+            if form.is_admin():
                 return redirect('lista_productos')
             else:
                 return redirect('inicio')
@@ -62,18 +62,24 @@ def registro_completado(request):
     return render(request, 'completado.html')
 
 
-def register_confirm(request, activation_key):
+def register_confirm(request, token):
     if request.user.is_authenticated():
         return redirect('inicio')
     else:
         user = None
         try:
-            user = Cliente.objects.get(activation_key=activation_key)
+            user = Cliente.objects.get(activation_key=token)
             if not user.is_active:
                 user.is_active = True
                 user.save()
+                return redirect('success', user.first_name)
             else:
                 return redirect('entrar')
         except Cliente.DoesNotExist:
             return render(request, 'clave_no_existe.html')
-    return render(request, 'confirmado.html', {'usuario': user})
+
+
+def success(request, user):
+    return render(request, 'confirmado.html', {
+        'user': user
+    })
