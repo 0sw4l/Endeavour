@@ -41,13 +41,13 @@ def register_user(request):
             cliente.username = data.email
             cliente.is_active = False
             key = hashlib.sha1(str(random.random())).hexdigest()[:5]
-            cliente.activation_key = hashlib.sha1(key+data.email).hexdigest()
+            cliente.token = hashlib.sha1(key+data.email).hexdigest()
             cliente.save()
 
             data_mail = {
                 'nombre': "{0} {1}".format(data.first_name, data.last_name),
                 'email': data.email,
-                'token': cliente.activation_key
+                'token': cliente.token
             }
 
             enviar_token(**data_mail)
