@@ -68,7 +68,7 @@ def register_confirm(request, token):
     else:
         user = None
         try:
-            user = Cliente.objects.get(activation_key=token)
+            user = Cliente.objects.get(token=token)
             if not user.is_active:
                 user.is_active = True
                 user.save()

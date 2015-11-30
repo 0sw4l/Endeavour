@@ -11,9 +11,15 @@ local = {
     }
 }
 
-import dj_database_url
-heroku = {
-    'default': dj_database_url.config(
-        default=os.environ["DATABASE_URL"]
-    )
-}
+
+heroku =     DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'dc54al2keh8qn7',
+            'USER': 'xzboirdjtlychz',
+            'PASSWORD': 'ODuvlajUXPFO99PH49xzknEQzy',
+            'HOST': 'ec2-54-83-202-218.compute-1.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
+
